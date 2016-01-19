@@ -1,34 +1,34 @@
-{namespace stash.page.slack.global.settings}
+{namespace stash.page.chatwork.global.settings}
 
 /**
- * @param slackGlobalWebHookUrl
- * @param slackChannelName
- * @param slackNotificationsEnabled
- * @param slackNotificationsOpenedEnabled
- * @param slackNotificationsReopenedEnabled
- * @param slackNotificationsUpdatedEnabled
- * @param slackNotificationsApprovedEnabled
- * @param slackNotificationsUnapprovedEnabled
- * @param slackNotificationsDeclinedEnabled
- * @param slackNotificationsMergedEnabled
- * @param slackNotificationsCommentedEnabled
- * @param slackNotificationsEnabledForPush
- * @param slackNotificationsEnabledForPersonal
+ * @param chatworkGlobalWebHookUrl
+ * @param chatworkChannelName
+ * @param chatworkNotificationsEnabled
+ * @param chatworkNotificationsOpenedEnabled
+ * @param chatworkNotificationsReopenedEnabled
+ * @param chatworkNotificationsUpdatedEnabled
+ * @param chatworkNotificationsApprovedEnabled
+ * @param chatworkNotificationsUnapprovedEnabled
+ * @param chatworkNotificationsDeclinedEnabled
+ * @param chatworkNotificationsMergedEnabled
+ * @param chatworkNotificationsCommentedEnabled
+ * @param chatworkNotificationsEnabledForPush
+ * @param chatworkNotificationsEnabledForPersonal
  * @param notificationLevel
  * @param notificationPrLevel
  * @param notificationLevels
  **/
-{template .viewGlobalSlackSettings}
+{template .viewGlobalChatworkSettings}
 <html>
     <head>
-        <title>Global slack settings</title>
+        <title>Global chatwork settings</title>
         <meta name="decorator" content="atl.admin">
-        <meta name="activeTab" content="global-settings-slack-settings">
+        <meta name="activeTab" content="global-settings-chatwork-settings">
     </head>
     <body>
         {call widget.aui.pageHeader}
             {param content}
-                <h2>{stash_i18n('stash.web.slack.global.settings.heading', 'Global Slack settings')}</h2>
+                <h2>{stash_i18n('stash.web.chatwork.global.settings.heading', 'Global Chatwork settings')}</h2>
             {/param}
         {/call}
         {call widget.aui.form.form}
@@ -37,15 +37,15 @@
 
                 <h4>Pull request notifications</h4>
                 {call widget.aui.form.checkbox}
-                    {param id: 'slackNotificationsEnabled' /}
-                    {param labelContent: stash_i18n('stash.web.slack.global.settings.slack.enabled.label', 'Enable slack notifications for pull requests') /}
-                    {param checked: $slackNotificationsEnabled /}
-                    {param description: stash_i18n('stash.web.slack.global.settings.slack.enabled.description', 'If enabled, users will receive slack notifications about pull request activities') /}
+                    {param id: 'chatworkNotificationsEnabled' /}
+                    {param labelContent: stash_i18n('stash.web.chatwork.global.settings.chatwork.enabled.label', 'Enable chatwork notifications for pull requests') /}
+                    {param checked: $chatworkNotificationsEnabled /}
+                    {param description: stash_i18n('stash.web.chatwork.global.settings.chatwork.enabled.description', 'If enabled, users will receive chatwork notifications about pull request activities') /}
                 {/call}
 
                 {call aui.form.selectField}
-                    {param id: 'slackNotificationPrLevel' /}
-                    {param labelContent: stash_i18n('stash.web.slack.settings.global.notification.pr.level.label', 'Pull request notification level') /}
+                    {param id: 'chatworkNotificationPrLevel' /}
+                    {param labelContent: stash_i18n('stash.web.chatwork.settings.global.notification.pr.level.label', 'Pull request notification level') /}
                     {param value: $notificationPrLevel /}
                     {param options: $notificationLevels /}
                 {/call}
@@ -54,66 +54,66 @@
                 <div style="padding-left: 20px;">
                     <p>Filter pull request events based on activity types</p>
                     {call widget.aui.form.checkbox}
-                        {param id: 'slackNotificationsOpenedEnabled' /}
-                        {param labelContent: stash_i18n('stash.web.slack.global.settings.slack.opened.enabled.label', 'Opened') /}
-                        {param checked: $slackNotificationsOpenedEnabled /}
-                        {param description: stash_i18n('stash.web.slack.settings.global.slack.opened.enabled.description', 'Send notifications for Opened PR events') /}
+                        {param id: 'chatworkNotificationsOpenedEnabled' /}
+                        {param labelContent: stash_i18n('stash.web.chatwork.global.settings.chatwork.opened.enabled.label', 'Opened') /}
+                        {param checked: $chatworkNotificationsOpenedEnabled /}
+                        {param description: stash_i18n('stash.web.chatwork.settings.global.chatwork.opened.enabled.description', 'Send notifications for Opened PR events') /}
                     {/call}
                     {call widget.aui.form.checkbox}
-                        {param id: 'slackNotificationsReopenedEnabled' /}
-                        {param labelContent: stash_i18n('stash.web.slack.settings.global.slack.reopened.enabled.label', 'Reopened') /}
-                        {param checked: $slackNotificationsReopenedEnabled /}
-                        {param description: stash_i18n('stash.web.slack.settings.global.slack.reopened.enabled.description', 'Send notifications for Reopened PR events') /}
+                        {param id: 'chatworkNotificationsReopenedEnabled' /}
+                        {param labelContent: stash_i18n('stash.web.chatwork.settings.global.chatwork.reopened.enabled.label', 'Reopened') /}
+                        {param checked: $chatworkNotificationsReopenedEnabled /}
+                        {param description: stash_i18n('stash.web.chatwork.settings.global.chatwork.reopened.enabled.description', 'Send notifications for Reopened PR events') /}
                     {/call}
                     {call widget.aui.form.checkbox}
-                        {param id: 'slackNotificationsUpdatedEnabled' /}
-                        {param labelContent: stash_i18n('stash.web.slack.settings.global.slack.updated.enabled.label', 'Updated') /}
-                        {param checked: $slackNotificationsUpdatedEnabled /}
-                        {param description: stash_i18n('stash.web.slack.settings.global.slack.updated.enabled.description', 'Send notifications for Updated PR events') /}
+                        {param id: 'chatworkNotificationsUpdatedEnabled' /}
+                        {param labelContent: stash_i18n('stash.web.chatwork.settings.global.chatwork.updated.enabled.label', 'Updated') /}
+                        {param checked: $chatworkNotificationsUpdatedEnabled /}
+                        {param description: stash_i18n('stash.web.chatwork.settings.global.chatwork.updated.enabled.description', 'Send notifications for Updated PR events') /}
                     {/call}
                     {call widget.aui.form.checkbox}
-                        {param id: 'slackNotificationsApprovedEnabled' /}
-                        {param labelContent: stash_i18n('stash.web.slack.settings.global.slack.approved.enabled.label', 'Approved') /}
-                        {param checked: $slackNotificationsApprovedEnabled /}
-                        {param description: stash_i18n('stash.web.slack.settings.global.slack.approved.enabled.description', 'Send notifications for Approved PR events') /}
+                        {param id: 'chatworkNotificationsApprovedEnabled' /}
+                        {param labelContent: stash_i18n('stash.web.chatwork.settings.global.chatwork.approved.enabled.label', 'Approved') /}
+                        {param checked: $chatworkNotificationsApprovedEnabled /}
+                        {param description: stash_i18n('stash.web.chatwork.settings.global.chatwork.approved.enabled.description', 'Send notifications for Approved PR events') /}
                     {/call}
                     {call widget.aui.form.checkbox}
-                        {param id: 'slackNotificationsUnapprovedEnabled' /}
-                        {param labelContent: stash_i18n('stash.web.slack.settings.global.slack.unapproved.enabled.label', 'Unapproved') /}
-                        {param checked: $slackNotificationsUnapprovedEnabled /}
-                        {param description: stash_i18n('stash.web.slack.settings.global.slack.unapproved.enabled.description', 'Send notifications for Unapproved PR events') /}
+                        {param id: 'chatworkNotificationsUnapprovedEnabled' /}
+                        {param labelContent: stash_i18n('stash.web.chatwork.settings.global.chatwork.unapproved.enabled.label', 'Unapproved') /}
+                        {param checked: $chatworkNotificationsUnapprovedEnabled /}
+                        {param description: stash_i18n('stash.web.chatwork.settings.global.chatwork.unapproved.enabled.description', 'Send notifications for Unapproved PR events') /}
                     {/call}
                     {call widget.aui.form.checkbox}
-                        {param id: 'slackNotificationsDeclinedEnabled' /}
-                        {param labelContent: stash_i18n('stash.web.slack.settings.global.slack.declined.enabled.label', 'Declined') /}
-                        {param checked: $slackNotificationsDeclinedEnabled /}
-                        {param description: stash_i18n('stash.web.slack.settings.global.slack.declined.enabled.description', 'Send notifications for Declined PR events') /}
+                        {param id: 'chatworkNotificationsDeclinedEnabled' /}
+                        {param labelContent: stash_i18n('stash.web.chatwork.settings.global.chatwork.declined.enabled.label', 'Declined') /}
+                        {param checked: $chatworkNotificationsDeclinedEnabled /}
+                        {param description: stash_i18n('stash.web.chatwork.settings.global.chatwork.declined.enabled.description', 'Send notifications for Declined PR events') /}
                     {/call}
                     {call widget.aui.form.checkbox}
-                        {param id: 'slackNotificationsMergedEnabled' /}
-                        {param labelContent: stash_i18n('stash.web.slack.settings.global.slack.merged.enabled.label', 'Merged') /}
-                        {param checked: $slackNotificationsMergedEnabled /}
-                        {param description: stash_i18n('stash.web.slack.settings.global.slack.merged.enabled.description', 'Send notifications for Merged PR events') /}
+                        {param id: 'chatworkNotificationsMergedEnabled' /}
+                        {param labelContent: stash_i18n('stash.web.chatwork.settings.global.chatwork.merged.enabled.label', 'Merged') /}
+                        {param checked: $chatworkNotificationsMergedEnabled /}
+                        {param description: stash_i18n('stash.web.chatwork.settings.global.chatwork.merged.enabled.description', 'Send notifications for Merged PR events') /}
                     {/call}
                     {call widget.aui.form.checkbox}
-                        {param id: 'slackNotificationsCommentedEnabled' /}
-                        {param labelContent: stash_i18n('stash.web.slack.settings.global.slack.commented.enabled.label', 'Commented') /}
-                        {param checked: $slackNotificationsCommentedEnabled /}
-                        {param description: stash_i18n('stash.web.slack.settings.global.slack.commented.enabled.description', 'Send notifications for Commented PR events') /}
+                        {param id: 'chatworkNotificationsCommentedEnabled' /}
+                        {param labelContent: stash_i18n('stash.web.chatwork.settings.global.chatwork.commented.enabled.label', 'Commented') /}
+                        {param checked: $chatworkNotificationsCommentedEnabled /}
+                        {param description: stash_i18n('stash.web.chatwork.settings.global.chatwork.commented.enabled.description', 'Send notifications for Commented PR events') /}
                     {/call}
                 </div>
 
                 <h4>Push notifications</h4>
 
                 {call widget.aui.form.checkbox}
-                    {param id: 'slackNotificationsEnabledForPush' /}
-                    {param labelContent: stash_i18n('stash.web.slack.settings.global.slack.push.enabled.label', 'Enable slack notifications for push') /}
-                    {param checked: $slackNotificationsEnabledForPush /}
-                    {param description: stash_i18n('stash.web.slack.settings.global.slack.push.enabled.description', 'If enabled, users will receive slack notifications about push activities') /}
+                    {param id: 'chatworkNotificationsEnabledForPush' /}
+                    {param labelContent: stash_i18n('stash.web.chatwork.settings.global.chatwork.push.enabled.label', 'Enable chatwork notifications for push') /}
+                    {param checked: $chatworkNotificationsEnabledForPush /}
+                    {param description: stash_i18n('stash.web.chatwork.settings.global.chatwork.push.enabled.description', 'If enabled, users will receive chatwork notifications about push activities') /}
                 {/call}
                 {call aui.form.selectField}
-                    {param id: 'slackNotificationLevel' /}
-                    {param labelContent: stash_i18n('stash.web.slack.settings.global.notification.level.label', 'Notification level') /}
+                    {param id: 'chatworkNotificationLevel' /}
+                    {param labelContent: stash_i18n('stash.web.chatwork.settings.global.notification.level.label', 'Notification level') /}
                     {param value: $notificationLevel /}
                     {param options: $notificationLevels /}
                 {/call}
@@ -121,32 +121,32 @@
                 <h4>Personal notifications enabled</h4>
 
                 {call widget.aui.form.checkbox}
-                    {param id: 'slackNotificationsEnabledForPersonal' /}
-                    {param labelContent: stash_i18n('stash.web.slack.settings.global.slack.personal.enabled.label', 'Enable slack notifications for personal') /}
-                    {param checked: $slackNotificationsEnabledForPersonal /}
-                    {param description: stash_i18n('stash.web.slack.settings.global.slack.personal.enabled.description', 'If enabled, users will receive slack notifications for personal repos (forks) for both push and pullreqs') /}
+                    {param id: 'chatworkNotificationsEnabledForPersonal' /}
+                    {param labelContent: stash_i18n('stash.web.chatwork.settings.global.chatwork.personal.enabled.label', 'Enable chatwork notifications for personal') /}
+                    {param checked: $chatworkNotificationsEnabledForPersonal /}
+                    {param description: stash_i18n('stash.web.chatwork.settings.global.chatwork.personal.enabled.description', 'If enabled, users will receive chatwork notifications for personal repos (forks) for both push and pullreqs') /}
                 {/call}
 
 
 
                 <h4>Channel and hook name</h4>
                 {call widget.aui.form.text}
-                    {param id: 'slackChannelName' /}
-                    {param labelContent: stash_i18n('stash.web.slack.settings.global.slack.channel', 'Channel name') /}
-                    {param initialValue: $slackChannelName /}
-                    {param description: stash_i18n('stash.web.slack.settings.global.slack.channel.description', 'Slack channel to use. Accepts a single channel name (example: #ch1), a comma separated list of channels (example: #ch1, #ch2, #ch3), or you can leave it empty. When empty, the default channel will be used within the webhook.') /}
+                    {param id: 'chatworkChannelName' /}
+                    {param labelContent: stash_i18n('stash.web.chatwork.settings.global.chatwork.channel', 'Channel name') /}
+                    {param initialValue: $chatworkChannelName /}
+                    {param description: stash_i18n('stash.web.chatwork.settings.global.chatwork.channel.description', 'Chatwork channel to use. Accepts a single channel name (example: #ch1), a comma separated list of channels (example: #ch1, #ch2, #ch3), or you can leave it empty. When empty, the default channel will be used within the webhook.') /}
                 {/call}
                 {call widget.aui.form.text}
-                    {param id: 'slackGlobalWebHookUrl' /}
-                    {param labelContent: stash_i18n('stash.web.slack.global.settings.slack.webhookurl', 'Webhook url') /}
-                    {param initialValue: $slackGlobalWebHookUrl /}
-                    {param description: stash_i18n('stash.web.slack.global.settings.slack.channel.description', 'Slack webhook url to use. This can be overriden for each repository at the repo slack settings page, if desired') /}
+                    {param id: 'chatworkGlobalWebHookUrl' /}
+                    {param labelContent: stash_i18n('stash.web.chatwork.global.settings.chatwork.webhookurl', 'Webhook url') /}
+                    {param initialValue: $chatworkGlobalWebHookUrl /}
+                    {param description: stash_i18n('stash.web.chatwork.global.settings.chatwork.channel.description', 'Chatwork webhook url to use. This can be overriden for each repository at the repo chatwork settings page, if desired') /}
                 {/call}
                 {call aui.form.buttons}
                     {param content}
                         {call aui.form.submit}
-                            {param id: 'stash.web.slack.global.settings.submit' /}
-                            {param text: stash_i18n('stash.web.slack.global.settings.submit', 'Save') /}
+                            {param id: 'stash.web.chatwork.global.settings.submit' /}
+                            {param text: stash_i18n('stash.web.chatwork.global.settings.submit', 'Save') /}
                             {param type: 'submit' /}
                         {/call}
                     {/param}

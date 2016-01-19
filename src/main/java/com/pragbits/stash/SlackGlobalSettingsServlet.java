@@ -25,36 +25,36 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Map;
 
-public class SlackGlobalSettingsServlet extends HttpServlet {
-    static final String KEY_GLOBAL_SETTING_HOOK_URL = "stash2slack.globalsettings.hookurl";
-    static final String KEY_GLOBAL_SETTING_CHANNEL_NAME = "stash2slack.globalsettings.channelname";
-    static final String KEY_GLOBAL_SETTING_NOTIFICATIONS_ENABLED = "stash2slack.globalsettings.slacknotificationsenabled";
-    static final String KEY_GLOBAL_SETTING_NOTIFICATIONS_OPENED_ENABLED = "stash2slack.globalsettings.slacknotificationsopenedenabled";
-    static final String KEY_GLOBAL_SETTING_NOTIFICATIONS_REOPENED_ENABLED = "stash2slack.globalsettings.slacknotificationsreopenedenabled";
-    static final String KEY_GLOBAL_SETTING_NOTIFICATIONS_UPDATED_ENABLED = "stash2slack.globalsettings.slacknotificationsupdatedenabled";
-    static final String KEY_GLOBAL_SETTING_NOTIFICATIONS_APPROVED_ENABLED = "stash2slack.globalsettings.slacknotificationsapprovedenabled";
-    static final String KEY_GLOBAL_SETTING_NOTIFICATIONS_UNAPPROVED_ENABLED = "stash2slack.globalsettings.slacknotificationsunapprovedenabled";
-    static final String KEY_GLOBAL_SETTING_NOTIFICATIONS_DECLINED_ENABLED = "stash2slack.globalsettings.slacknotificationsdeclinedenabled";
-    static final String KEY_GLOBAL_SETTING_NOTIFICATIONS_MERGED_ENABLED = "stash2slack.globalsettings.slacknotificationsmergedenabled";
-    static final String KEY_GLOBAL_SETTING_NOTIFICATIONS_COMMENTED_ENABLED = "stash2slack.globalsettings.slacknotificationscommentedenabled";
-    static final String KEY_GLOBAL_SETTING_NOTIFICATIONS_LEVEL = "stash2slack.globalsettings.slacknotificationslevel";
-    static final String KEY_GLOBAL_SETTING_NOTIFICATIONS_PR_LEVEL = "stash2slack.globalsettings.slacknotificationsprlevel";
-    static final String KEY_GLOBAL_SETTING_NOTIFICATIONS_PUSH_ENABLED = "stash2slack.globalsettings.slacknotificationspushenabled";
-    static final String KEY_GLOBAL_SETTING_NOTIFICATIONS_PERSONAL_ENABLED = "stash2slack.globalsettings.slacknotificationspersonalenabled";
+public class ChatworkGlobalSettingsServlet extends HttpServlet {
+    static final String KEY_GLOBAL_SETTING_HOOK_URL = "stash2chatwork.globalsettings.hookurl";
+    static final String KEY_GLOBAL_SETTING_CHANNEL_NAME = "stash2chatwork.globalsettings.channelname";
+    static final String KEY_GLOBAL_SETTING_NOTIFICATIONS_ENABLED = "stash2chatwork.globalsettings.chatworknotificationsenabled";
+    static final String KEY_GLOBAL_SETTING_NOTIFICATIONS_OPENED_ENABLED = "stash2chatwork.globalsettings.chatworknotificationsopenedenabled";
+    static final String KEY_GLOBAL_SETTING_NOTIFICATIONS_REOPENED_ENABLED = "stash2chatwork.globalsettings.chatworknotificationsreopenedenabled";
+    static final String KEY_GLOBAL_SETTING_NOTIFICATIONS_UPDATED_ENABLED = "stash2chatwork.globalsettings.chatworknotificationsupdatedenabled";
+    static final String KEY_GLOBAL_SETTING_NOTIFICATIONS_APPROVED_ENABLED = "stash2chatwork.globalsettings.chatworknotificationsapprovedenabled";
+    static final String KEY_GLOBAL_SETTING_NOTIFICATIONS_UNAPPROVED_ENABLED = "stash2chatwork.globalsettings.chatworknotificationsunapprovedenabled";
+    static final String KEY_GLOBAL_SETTING_NOTIFICATIONS_DECLINED_ENABLED = "stash2chatwork.globalsettings.chatworknotificationsdeclinedenabled";
+    static final String KEY_GLOBAL_SETTING_NOTIFICATIONS_MERGED_ENABLED = "stash2chatwork.globalsettings.chatworknotificationsmergedenabled";
+    static final String KEY_GLOBAL_SETTING_NOTIFICATIONS_COMMENTED_ENABLED = "stash2chatwork.globalsettings.chatworknotificationscommentedenabled";
+    static final String KEY_GLOBAL_SETTING_NOTIFICATIONS_LEVEL = "stash2chatwork.globalsettings.chatworknotificationslevel";
+    static final String KEY_GLOBAL_SETTING_NOTIFICATIONS_PR_LEVEL = "stash2chatwork.globalsettings.chatworknotificationsprlevel";
+    static final String KEY_GLOBAL_SETTING_NOTIFICATIONS_PUSH_ENABLED = "stash2chatwork.globalsettings.chatworknotificationspushenabled";
+    static final String KEY_GLOBAL_SETTING_NOTIFICATIONS_PERSONAL_ENABLED = "stash2chatwork.globalsettings.chatworknotificationspersonalenabled";
 
     private final PageBuilderService pageBuilderService;
-    private final SlackGlobalSettingsService slackGlobalSettingsService;
+    private final ChatworkGlobalSettingsService chatworkGlobalSettingsService;
     private final SoyTemplateRenderer soyTemplateRenderer;
     private final PermissionValidationService validationService;
     private final I18nService i18nService;
 
-    public SlackGlobalSettingsServlet(PageBuilderService pageBuilderService,
-                                      SlackGlobalSettingsService slackGlobalSettingsService,
+    public ChatworkGlobalSettingsServlet(PageBuilderService pageBuilderService,
+                                      ChatworkGlobalSettingsService chatworkGlobalSettingsService,
                                       SoyTemplateRenderer soyTemplateRenderer,
                                       PermissionValidationService validationService,
                                       I18nService i18nService) {
         this.pageBuilderService = pageBuilderService;
-        this.slackGlobalSettingsService = slackGlobalSettingsService;
+        this.chatworkGlobalSettingsService = chatworkGlobalSettingsService;
         this.soyTemplateRenderer = soyTemplateRenderer;
         this.validationService = validationService;
         this.i18nService = i18nService;
@@ -73,93 +73,93 @@ public class SlackGlobalSettingsServlet extends HttpServlet {
             return;
         }
 
-        String globalWebHookUrl = req.getParameter("slackGlobalWebHookUrl");
+        String globalWebHookUrl = req.getParameter("chatworkGlobalWebHookUrl");
         if (null != globalWebHookUrl) {
-            slackGlobalSettingsService.setWebHookUrl(KEY_GLOBAL_SETTING_HOOK_URL, globalWebHookUrl);
+            chatworkGlobalSettingsService.setWebHookUrl(KEY_GLOBAL_SETTING_HOOK_URL, globalWebHookUrl);
         }
 
-        String slackChannelName = req.getParameter("slackChannelName");
-        if (null != slackChannelName) {
-            slackGlobalSettingsService.setChannelName(KEY_GLOBAL_SETTING_CHANNEL_NAME, slackChannelName);
+        String chatworkChannelName = req.getParameter("chatworkChannelName");
+        if (null != chatworkChannelName) {
+            chatworkGlobalSettingsService.setChannelName(KEY_GLOBAL_SETTING_CHANNEL_NAME, chatworkChannelName);
         }
 
-        Boolean slackNotificationsEnabled = false;
-        if (null != req.getParameter("slackNotificationsEnabled") && req.getParameter("slackNotificationsEnabled").equals("on")) {
-            slackNotificationsEnabled = true;
+        Boolean chatworkNotificationsEnabled = false;
+        if (null != req.getParameter("chatworkNotificationsEnabled") && req.getParameter("chatworkNotificationsEnabled").equals("on")) {
+            chatworkNotificationsEnabled = true;
         }
-        slackGlobalSettingsService.setSlackNotificationsEnabled(KEY_GLOBAL_SETTING_NOTIFICATIONS_ENABLED, slackNotificationsEnabled.toString());
+        chatworkGlobalSettingsService.setChatworkNotificationsEnabled(KEY_GLOBAL_SETTING_NOTIFICATIONS_ENABLED, chatworkNotificationsEnabled.toString());
 
-        Boolean slackNotificationsOpenedEnabled = false;
-        if (null != req.getParameter("slackNotificationsOpenedEnabled") && req.getParameter("slackNotificationsOpenedEnabled").equals("on")) {
-            slackNotificationsOpenedEnabled = true;
+        Boolean chatworkNotificationsOpenedEnabled = false;
+        if (null != req.getParameter("chatworkNotificationsOpenedEnabled") && req.getParameter("chatworkNotificationsOpenedEnabled").equals("on")) {
+            chatworkNotificationsOpenedEnabled = true;
         }
-        slackGlobalSettingsService.setSlackNotificationsOpenedEnabled(KEY_GLOBAL_SETTING_NOTIFICATIONS_OPENED_ENABLED, slackNotificationsOpenedEnabled.toString());
+        chatworkGlobalSettingsService.setChatworkNotificationsOpenedEnabled(KEY_GLOBAL_SETTING_NOTIFICATIONS_OPENED_ENABLED, chatworkNotificationsOpenedEnabled.toString());
 
-        Boolean slackNotificationsReopenedEnabled = false;
-        if (null != req.getParameter("slackNotificationsReopenedEnabled") && req.getParameter("slackNotificationsReopenedEnabled").equals("on")) {
-            slackNotificationsReopenedEnabled = true;
+        Boolean chatworkNotificationsReopenedEnabled = false;
+        if (null != req.getParameter("chatworkNotificationsReopenedEnabled") && req.getParameter("chatworkNotificationsReopenedEnabled").equals("on")) {
+            chatworkNotificationsReopenedEnabled = true;
         }
-        slackGlobalSettingsService.setSlackNotificationsReopenedEnabled(KEY_GLOBAL_SETTING_NOTIFICATIONS_REOPENED_ENABLED, slackNotificationsReopenedEnabled.toString());
+        chatworkGlobalSettingsService.setChatworkNotificationsReopenedEnabled(KEY_GLOBAL_SETTING_NOTIFICATIONS_REOPENED_ENABLED, chatworkNotificationsReopenedEnabled.toString());
 
-        Boolean slackNotificationsUpdatedEnabled = false;
-        if (null != req.getParameter("slackNotificationsUpdatedEnabled") && req.getParameter("slackNotificationsUpdatedEnabled").equals("on")) {
-            slackNotificationsUpdatedEnabled = true;
+        Boolean chatworkNotificationsUpdatedEnabled = false;
+        if (null != req.getParameter("chatworkNotificationsUpdatedEnabled") && req.getParameter("chatworkNotificationsUpdatedEnabled").equals("on")) {
+            chatworkNotificationsUpdatedEnabled = true;
         }
-        slackGlobalSettingsService.setSlackNotificationsUpdatedEnabled(KEY_GLOBAL_SETTING_NOTIFICATIONS_UPDATED_ENABLED, slackNotificationsUpdatedEnabled.toString());
+        chatworkGlobalSettingsService.setChatworkNotificationsUpdatedEnabled(KEY_GLOBAL_SETTING_NOTIFICATIONS_UPDATED_ENABLED, chatworkNotificationsUpdatedEnabled.toString());
 
-        Boolean slackNotificationsApprovedEnabled = false;
-        if (null != req.getParameter("slackNotificationsApprovedEnabled") && req.getParameter("slackNotificationsApprovedEnabled").equals("on")) {
-            slackNotificationsApprovedEnabled = true;
+        Boolean chatworkNotificationsApprovedEnabled = false;
+        if (null != req.getParameter("chatworkNotificationsApprovedEnabled") && req.getParameter("chatworkNotificationsApprovedEnabled").equals("on")) {
+            chatworkNotificationsApprovedEnabled = true;
         }
-        slackGlobalSettingsService.setSlackNotificationsApprovedEnabled(KEY_GLOBAL_SETTING_NOTIFICATIONS_APPROVED_ENABLED, slackNotificationsApprovedEnabled.toString());
+        chatworkGlobalSettingsService.setChatworkNotificationsApprovedEnabled(KEY_GLOBAL_SETTING_NOTIFICATIONS_APPROVED_ENABLED, chatworkNotificationsApprovedEnabled.toString());
 
-        Boolean slackNotificationsUnapprovedEnabled = false;
-        if (null != req.getParameter("slackNotificationsUnapprovedEnabled") && req.getParameter("slackNotificationsUnapprovedEnabled").equals("on")) {
-            slackNotificationsUnapprovedEnabled = true;
+        Boolean chatworkNotificationsUnapprovedEnabled = false;
+        if (null != req.getParameter("chatworkNotificationsUnapprovedEnabled") && req.getParameter("chatworkNotificationsUnapprovedEnabled").equals("on")) {
+            chatworkNotificationsUnapprovedEnabled = true;
         }
-        slackGlobalSettingsService.setSlackNotificationsUnapprovedEnabled(KEY_GLOBAL_SETTING_NOTIFICATIONS_UNAPPROVED_ENABLED, slackNotificationsUnapprovedEnabled.toString());
+        chatworkGlobalSettingsService.setChatworkNotificationsUnapprovedEnabled(KEY_GLOBAL_SETTING_NOTIFICATIONS_UNAPPROVED_ENABLED, chatworkNotificationsUnapprovedEnabled.toString());
 
-        Boolean slackNotificationsDeclinedEnabled = false;
-        if (null != req.getParameter("slackNotificationsDeclinedEnabled") && req.getParameter("slackNotificationsDeclinedEnabled").equals("on")) {
-            slackNotificationsDeclinedEnabled = true;
+        Boolean chatworkNotificationsDeclinedEnabled = false;
+        if (null != req.getParameter("chatworkNotificationsDeclinedEnabled") && req.getParameter("chatworkNotificationsDeclinedEnabled").equals("on")) {
+            chatworkNotificationsDeclinedEnabled = true;
         }
-        slackGlobalSettingsService.setSlackNotificationsDeclinedEnabled(KEY_GLOBAL_SETTING_NOTIFICATIONS_DECLINED_ENABLED, slackNotificationsDeclinedEnabled.toString());
+        chatworkGlobalSettingsService.setChatworkNotificationsDeclinedEnabled(KEY_GLOBAL_SETTING_NOTIFICATIONS_DECLINED_ENABLED, chatworkNotificationsDeclinedEnabled.toString());
 
-        Boolean slackNotificationsMergedEnabled = false;
-        if (null != req.getParameter("slackNotificationsMergedEnabled") && req.getParameter("slackNotificationsMergedEnabled").equals("on")) {
-            slackNotificationsMergedEnabled = true;
+        Boolean chatworkNotificationsMergedEnabled = false;
+        if (null != req.getParameter("chatworkNotificationsMergedEnabled") && req.getParameter("chatworkNotificationsMergedEnabled").equals("on")) {
+            chatworkNotificationsMergedEnabled = true;
         }
-        slackGlobalSettingsService.setSlackNotificationsMergedEnabled(KEY_GLOBAL_SETTING_NOTIFICATIONS_MERGED_ENABLED, slackNotificationsMergedEnabled.toString());
+        chatworkGlobalSettingsService.setChatworkNotificationsMergedEnabled(KEY_GLOBAL_SETTING_NOTIFICATIONS_MERGED_ENABLED, chatworkNotificationsMergedEnabled.toString());
 
-        Boolean slackNotificationsCommentedEnabled = false;
-        if (null != req.getParameter("slackNotificationsCommentedEnabled") && req.getParameter("slackNotificationsCommentedEnabled").equals("on")) {
-            slackNotificationsCommentedEnabled = true;
+        Boolean chatworkNotificationsCommentedEnabled = false;
+        if (null != req.getParameter("chatworkNotificationsCommentedEnabled") && req.getParameter("chatworkNotificationsCommentedEnabled").equals("on")) {
+            chatworkNotificationsCommentedEnabled = true;
         }
-        slackGlobalSettingsService.setSlackNotificationsCommentedEnabled(KEY_GLOBAL_SETTING_NOTIFICATIONS_COMMENTED_ENABLED, slackNotificationsCommentedEnabled.toString());
+        chatworkGlobalSettingsService.setChatworkNotificationsCommentedEnabled(KEY_GLOBAL_SETTING_NOTIFICATIONS_COMMENTED_ENABLED, chatworkNotificationsCommentedEnabled.toString());
 
         NotificationLevel notificationLevel = NotificationLevel.VERBOSE;
-        if (null != req.getParameter("slackNotificationLevel")) {
-            notificationLevel = NotificationLevel.valueOf(req.getParameter("slackNotificationLevel"));
+        if (null != req.getParameter("chatworkNotificationLevel")) {
+            notificationLevel = NotificationLevel.valueOf(req.getParameter("chatworkNotificationLevel"));
         }
-        slackGlobalSettingsService.setNotificationLevel(KEY_GLOBAL_SETTING_NOTIFICATIONS_LEVEL, notificationLevel.toString());
+        chatworkGlobalSettingsService.setNotificationLevel(KEY_GLOBAL_SETTING_NOTIFICATIONS_LEVEL, notificationLevel.toString());
 
         NotificationLevel notificationPrLevel = NotificationLevel.VERBOSE;
-        if (null != req.getParameter("slackNotificationPrLevel")) {
-            notificationPrLevel = NotificationLevel.valueOf(req.getParameter("slackNotificationPrLevel"));
+        if (null != req.getParameter("chatworkNotificationPrLevel")) {
+            notificationPrLevel = NotificationLevel.valueOf(req.getParameter("chatworkNotificationPrLevel"));
         }
-        slackGlobalSettingsService.setNotificationPrLevel(KEY_GLOBAL_SETTING_NOTIFICATIONS_PR_LEVEL, notificationPrLevel.toString());
+        chatworkGlobalSettingsService.setNotificationPrLevel(KEY_GLOBAL_SETTING_NOTIFICATIONS_PR_LEVEL, notificationPrLevel.toString());
 
-        Boolean slackNotificationsEnabledForPush = false;
-        if (null != req.getParameter("slackNotificationsEnabledForPush") && req.getParameter("slackNotificationsEnabledForPush").equals("on")) {
-            slackNotificationsEnabledForPush = true;
+        Boolean chatworkNotificationsEnabledForPush = false;
+        if (null != req.getParameter("chatworkNotificationsEnabledForPush") && req.getParameter("chatworkNotificationsEnabledForPush").equals("on")) {
+            chatworkNotificationsEnabledForPush = true;
         }
-        slackGlobalSettingsService.setSlackNotificationsEnabledForPush(KEY_GLOBAL_SETTING_NOTIFICATIONS_PUSH_ENABLED, slackNotificationsEnabledForPush.toString());
+        chatworkGlobalSettingsService.setChatworkNotificationsEnabledForPush(KEY_GLOBAL_SETTING_NOTIFICATIONS_PUSH_ENABLED, chatworkNotificationsEnabledForPush.toString());
 
-        Boolean slackNotificationsEnabledForPersonal = false;
-        if (null != req.getParameter("slackNotificationsEnabledForPersonal") && req.getParameter("slackNotificationsEnabledForPersonal").equals("on")) {
-            slackNotificationsEnabledForPersonal = true;
+        Boolean chatworkNotificationsEnabledForPersonal = false;
+        if (null != req.getParameter("chatworkNotificationsEnabledForPersonal") && req.getParameter("chatworkNotificationsEnabledForPersonal").equals("on")) {
+            chatworkNotificationsEnabledForPersonal = true;
         }
-        slackGlobalSettingsService.setSlackNotificationsEnabledForPersonal(KEY_GLOBAL_SETTING_NOTIFICATIONS_PERSONAL_ENABLED, slackNotificationsEnabledForPersonal.toString());
+        chatworkGlobalSettingsService.setChatworkNotificationsEnabledForPersonal(KEY_GLOBAL_SETTING_NOTIFICATIONS_PERSONAL_ENABLED, chatworkNotificationsEnabledForPersonal.toString());
 
 
         doGet(req, res);
@@ -177,46 +177,46 @@ public class SlackGlobalSettingsServlet extends HttpServlet {
 
         validationService.validateForGlobal(Permission.ADMIN);
 
-        String webHookUrl = slackGlobalSettingsService.getWebHookUrl(KEY_GLOBAL_SETTING_HOOK_URL);
+        String webHookUrl = chatworkGlobalSettingsService.getWebHookUrl(KEY_GLOBAL_SETTING_HOOK_URL);
         if (null == webHookUrl || webHookUrl.equals("")) {
             webHookUrl = "";
         }
 
-        String channelName = slackGlobalSettingsService.getChannelName(KEY_GLOBAL_SETTING_CHANNEL_NAME);
+        String channelName = chatworkGlobalSettingsService.getChannelName(KEY_GLOBAL_SETTING_CHANNEL_NAME);
         if (null == channelName || channelName.equals("")) {
             channelName = "";
         }
 
-        Boolean slackNotificationsEnabled = slackGlobalSettingsService.getSlackNotificationsEnabled(KEY_GLOBAL_SETTING_NOTIFICATIONS_ENABLED);
-        Boolean slackNotificationsOpenedEnabled = slackGlobalSettingsService.getSlackNotificationsOpenedEnabled(KEY_GLOBAL_SETTING_NOTIFICATIONS_OPENED_ENABLED);
-        Boolean slackNotificationsReopenedEnabled = slackGlobalSettingsService.getSlackNotificationsReopenedEnabled(KEY_GLOBAL_SETTING_NOTIFICATIONS_REOPENED_ENABLED);
-        Boolean slackNotificationsUpdatedEnabled = slackGlobalSettingsService.getSlackNotificationsUpdatedEnabled(KEY_GLOBAL_SETTING_NOTIFICATIONS_UPDATED_ENABLED);
-        Boolean slackNotificationsApprovedEnabled = slackGlobalSettingsService.getSlackNotificationsApprovedEnabled(KEY_GLOBAL_SETTING_NOTIFICATIONS_APPROVED_ENABLED);
-        Boolean slackNotificationsUnapprovedEnabled = slackGlobalSettingsService.getSlackNotificationsUnapprovedEnabled(KEY_GLOBAL_SETTING_NOTIFICATIONS_UNAPPROVED_ENABLED);
-        Boolean slackNotificationsDeclinedEnabled = slackGlobalSettingsService.getSlackNotificationsDeclinedEnabled(KEY_GLOBAL_SETTING_NOTIFICATIONS_DECLINED_ENABLED);
-        Boolean slackNotificationsMergedEnabled = slackGlobalSettingsService.getSlackNotificationsMergedEnabled(KEY_GLOBAL_SETTING_NOTIFICATIONS_MERGED_ENABLED);
-        Boolean slackNotificationsCommentedEnabled = slackGlobalSettingsService.getSlackNotificationsCommentedEnabled(KEY_GLOBAL_SETTING_NOTIFICATIONS_COMMENTED_ENABLED);
-        Boolean slackNotificationsEnabledForPush = slackGlobalSettingsService.getSlackNotificationsEnabledForPush(KEY_GLOBAL_SETTING_NOTIFICATIONS_PUSH_ENABLED);
-        Boolean slackNotificationsEnabledForPersonal = slackGlobalSettingsService.getSlackNotificationsEnabledForPersonal(KEY_GLOBAL_SETTING_NOTIFICATIONS_PERSONAL_ENABLED);
-        String notificationLevel = slackGlobalSettingsService.getNotificationLevel(KEY_GLOBAL_SETTING_NOTIFICATIONS_LEVEL).toString();
-        String notificationPrLevel = slackGlobalSettingsService.getNotificationPrLevel(KEY_GLOBAL_SETTING_NOTIFICATIONS_PR_LEVEL).toString();
+        Boolean chatworkNotificationsEnabled = chatworkGlobalSettingsService.getChatworkNotificationsEnabled(KEY_GLOBAL_SETTING_NOTIFICATIONS_ENABLED);
+        Boolean chatworkNotificationsOpenedEnabled = chatworkGlobalSettingsService.getChatworkNotificationsOpenedEnabled(KEY_GLOBAL_SETTING_NOTIFICATIONS_OPENED_ENABLED);
+        Boolean chatworkNotificationsReopenedEnabled = chatworkGlobalSettingsService.getChatworkNotificationsReopenedEnabled(KEY_GLOBAL_SETTING_NOTIFICATIONS_REOPENED_ENABLED);
+        Boolean chatworkNotificationsUpdatedEnabled = chatworkGlobalSettingsService.getChatworkNotificationsUpdatedEnabled(KEY_GLOBAL_SETTING_NOTIFICATIONS_UPDATED_ENABLED);
+        Boolean chatworkNotificationsApprovedEnabled = chatworkGlobalSettingsService.getChatworkNotificationsApprovedEnabled(KEY_GLOBAL_SETTING_NOTIFICATIONS_APPROVED_ENABLED);
+        Boolean chatworkNotificationsUnapprovedEnabled = chatworkGlobalSettingsService.getChatworkNotificationsUnapprovedEnabled(KEY_GLOBAL_SETTING_NOTIFICATIONS_UNAPPROVED_ENABLED);
+        Boolean chatworkNotificationsDeclinedEnabled = chatworkGlobalSettingsService.getChatworkNotificationsDeclinedEnabled(KEY_GLOBAL_SETTING_NOTIFICATIONS_DECLINED_ENABLED);
+        Boolean chatworkNotificationsMergedEnabled = chatworkGlobalSettingsService.getChatworkNotificationsMergedEnabled(KEY_GLOBAL_SETTING_NOTIFICATIONS_MERGED_ENABLED);
+        Boolean chatworkNotificationsCommentedEnabled = chatworkGlobalSettingsService.getChatworkNotificationsCommentedEnabled(KEY_GLOBAL_SETTING_NOTIFICATIONS_COMMENTED_ENABLED);
+        Boolean chatworkNotificationsEnabledForPush = chatworkGlobalSettingsService.getChatworkNotificationsEnabledForPush(KEY_GLOBAL_SETTING_NOTIFICATIONS_PUSH_ENABLED);
+        Boolean chatworkNotificationsEnabledForPersonal = chatworkGlobalSettingsService.getChatworkNotificationsEnabledForPersonal(KEY_GLOBAL_SETTING_NOTIFICATIONS_PERSONAL_ENABLED);
+        String notificationLevel = chatworkGlobalSettingsService.getNotificationLevel(KEY_GLOBAL_SETTING_NOTIFICATIONS_LEVEL).toString();
+        String notificationPrLevel = chatworkGlobalSettingsService.getNotificationPrLevel(KEY_GLOBAL_SETTING_NOTIFICATIONS_PR_LEVEL).toString();
 
         render(response,
-                "stash.page.slack.global.settings.viewGlobalSlackSettings",
+                "stash.page.chatwork.global.settings.viewGlobalChatworkSettings",
                 ImmutableMap.<String, Object>builder()
-                        .put("slackGlobalWebHookUrl", webHookUrl)
-                        .put("slackChannelName", channelName)
-                        .put("slackNotificationsEnabled", slackNotificationsEnabled)
-                        .put("slackNotificationsOpenedEnabled", slackNotificationsOpenedEnabled)
-                        .put("slackNotificationsReopenedEnabled", slackNotificationsReopenedEnabled)
-                        .put("slackNotificationsUpdatedEnabled", slackNotificationsUpdatedEnabled)
-                        .put("slackNotificationsApprovedEnabled", slackNotificationsApprovedEnabled)
-                        .put("slackNotificationsUnapprovedEnabled", slackNotificationsUnapprovedEnabled)
-                        .put("slackNotificationsDeclinedEnabled", slackNotificationsDeclinedEnabled)
-                        .put("slackNotificationsMergedEnabled", slackNotificationsMergedEnabled)
-                        .put("slackNotificationsCommentedEnabled", slackNotificationsCommentedEnabled)
-                        .put("slackNotificationsEnabledForPush", slackNotificationsEnabledForPush)
-                        .put("slackNotificationsEnabledForPersonal", slackNotificationsEnabledForPersonal)
+                        .put("chatworkGlobalWebHookUrl", webHookUrl)
+                        .put("chatworkChannelName", channelName)
+                        .put("chatworkNotificationsEnabled", chatworkNotificationsEnabled)
+                        .put("chatworkNotificationsOpenedEnabled", chatworkNotificationsOpenedEnabled)
+                        .put("chatworkNotificationsReopenedEnabled", chatworkNotificationsReopenedEnabled)
+                        .put("chatworkNotificationsUpdatedEnabled", chatworkNotificationsUpdatedEnabled)
+                        .put("chatworkNotificationsApprovedEnabled", chatworkNotificationsApprovedEnabled)
+                        .put("chatworkNotificationsUnapprovedEnabled", chatworkNotificationsUnapprovedEnabled)
+                        .put("chatworkNotificationsDeclinedEnabled", chatworkNotificationsDeclinedEnabled)
+                        .put("chatworkNotificationsMergedEnabled", chatworkNotificationsMergedEnabled)
+                        .put("chatworkNotificationsCommentedEnabled", chatworkNotificationsCommentedEnabled)
+                        .put("chatworkNotificationsEnabledForPush", chatworkNotificationsEnabledForPush)
+                        .put("chatworkNotificationsEnabledForPersonal", chatworkNotificationsEnabledForPersonal)
                         .put("notificationLevel", notificationLevel)
                         .put("notificationPrLevel", notificationPrLevel)
                         .put("notificationLevels", new SelectFieldOptions(NotificationLevel.values()).toSoyStructure())
@@ -226,7 +226,7 @@ public class SlackGlobalSettingsServlet extends HttpServlet {
 
     private void render(HttpServletResponse response, String templateName, Map<String, Object> data)
             throws IOException, ServletException {
-        pageBuilderService.assembler().resources().requireContext("plugin.adminpage.slack");
+        pageBuilderService.assembler().resources().requireContext("plugin.adminpage.chatwork");
         response.setContentType("text/html;charset=UTF-8");
         try {
             soyTemplateRenderer.render(response.getWriter(), PluginMetadata.getCompleteModuleKey("soy-templates"), templateName, data);

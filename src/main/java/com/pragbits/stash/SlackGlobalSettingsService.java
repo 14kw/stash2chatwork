@@ -1,6 +1,6 @@
 package com.pragbits.stash;
 
-public interface SlackGlobalSettingsService {
+public interface ChatworkGlobalSettingsService {
 
     // hook and channel name
     String getWebHookUrl(String key);
@@ -10,36 +10,36 @@ public interface SlackGlobalSettingsService {
     void setChannelName(String key, String value);
 
     // pull requests are enabled and pr events
-    boolean getSlackNotificationsEnabled(String key);
-    void setSlackNotificationsEnabled(String key, String value);
+    boolean getChatworkNotificationsEnabled(String key);
+    void setChatworkNotificationsEnabled(String key, String value);
 
-    boolean getSlackNotificationsOpenedEnabled(String key);
-    void setSlackNotificationsOpenedEnabled(String key, String value);
+    boolean getChatworkNotificationsOpenedEnabled(String key);
+    void setChatworkNotificationsOpenedEnabled(String key, String value);
 
-    boolean getSlackNotificationsReopenedEnabled(String key);
-    void setSlackNotificationsReopenedEnabled(String key, String value);
+    boolean getChatworkNotificationsReopenedEnabled(String key);
+    void setChatworkNotificationsReopenedEnabled(String key, String value);
 
-    boolean getSlackNotificationsUpdatedEnabled(String key);
-    void setSlackNotificationsUpdatedEnabled(String key, String value);
+    boolean getChatworkNotificationsUpdatedEnabled(String key);
+    void setChatworkNotificationsUpdatedEnabled(String key, String value);
 
-    boolean getSlackNotificationsApprovedEnabled(String key);
-    void setSlackNotificationsApprovedEnabled(String key, String value);
+    boolean getChatworkNotificationsApprovedEnabled(String key);
+    void setChatworkNotificationsApprovedEnabled(String key, String value);
 
-    boolean getSlackNotificationsUnapprovedEnabled(String key);
-    void setSlackNotificationsUnapprovedEnabled(String key, String value);
+    boolean getChatworkNotificationsUnapprovedEnabled(String key);
+    void setChatworkNotificationsUnapprovedEnabled(String key, String value);
 
-    boolean getSlackNotificationsDeclinedEnabled(String key);
-    void setSlackNotificationsDeclinedEnabled(String key, String value);
+    boolean getChatworkNotificationsDeclinedEnabled(String key);
+    void setChatworkNotificationsDeclinedEnabled(String key, String value);
 
-    boolean getSlackNotificationsMergedEnabled(String key);
-    void setSlackNotificationsMergedEnabled(String key, String value);
+    boolean getChatworkNotificationsMergedEnabled(String key);
+    void setChatworkNotificationsMergedEnabled(String key, String value);
 
-    boolean getSlackNotificationsCommentedEnabled(String key);
-    void setSlackNotificationsCommentedEnabled(String key, String value);
+    boolean getChatworkNotificationsCommentedEnabled(String key);
+    void setChatworkNotificationsCommentedEnabled(String key, String value);
 
     // push notifications are enabled and push options
-    boolean getSlackNotificationsEnabledForPush(String key);
-    void setSlackNotificationsEnabledForPush(String key, String value);
+    boolean getChatworkNotificationsEnabledForPush(String key);
+    void setChatworkNotificationsEnabledForPush(String key, String value);
 
     NotificationLevel getNotificationLevel(String key);
     void setNotificationLevel(String key, String value);
@@ -47,8 +47,8 @@ public interface SlackGlobalSettingsService {
     NotificationLevel getNotificationPrLevel(String key);
     void setNotificationPrLevel(String key, String value);
 
-    boolean getSlackNotificationsEnabledForPersonal(String key);
-    void setSlackNotificationsEnabledForPersonal(String key, String value);
+    boolean getChatworkNotificationsEnabledForPersonal(String key);
+    void setChatworkNotificationsEnabledForPersonal(String key, String value);
 
 
 }

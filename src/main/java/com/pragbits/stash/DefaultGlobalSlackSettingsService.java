@@ -5,11 +5,11 @@ import com.atlassian.sal.api.pluginsettings.PluginSettings;
 import com.atlassian.sal.api.pluginsettings.PluginSettingsFactory;
 import org.apache.xpath.operations.Bool;
 
-public class DefaultGlobalSlackSettingsService implements SlackGlobalSettingsService {
+public class DefaultGlobalChatworkSettingsService implements ChatworkGlobalSettingsService {
 
     private final PluginSettings pluginSettings;
 
-    public DefaultGlobalSlackSettingsService(PluginSettingsFactory pluginSettingsFactory) {
+    public DefaultGlobalChatworkSettingsService(PluginSettingsFactory pluginSettingsFactory) {
         this.pluginSettings = pluginSettingsFactory.createGlobalSettings();
     }
 
@@ -44,112 +44,112 @@ public class DefaultGlobalSlackSettingsService implements SlackGlobalSettingsSer
     }
 
     @Override
-    public boolean getSlackNotificationsEnabled(String key) {
+    public boolean getChatworkNotificationsEnabled(String key) {
         return Boolean.parseBoolean((String) pluginSettings.get(key));
     }
 
     @Override
-    public void setSlackNotificationsEnabled(String key, String value) {
+    public void setChatworkNotificationsEnabled(String key, String value) {
         pluginSettings.put(key, value);
     }
 
     @Override
-    public boolean getSlackNotificationsOpenedEnabled(String key) {
+    public boolean getChatworkNotificationsOpenedEnabled(String key) {
         return Boolean.parseBoolean((String)pluginSettings.get(key));
     }
 
     @Override
-    public void setSlackNotificationsOpenedEnabled(String key, String value) {
+    public void setChatworkNotificationsOpenedEnabled(String key, String value) {
         pluginSettings.put(key, value);
     }
 
     @Override
-    public boolean getSlackNotificationsReopenedEnabled(String key) {
+    public boolean getChatworkNotificationsReopenedEnabled(String key) {
         return Boolean.parseBoolean((String)pluginSettings.get(key));
     }
 
     @Override
-    public void setSlackNotificationsReopenedEnabled(String key, String value) {
+    public void setChatworkNotificationsReopenedEnabled(String key, String value) {
         pluginSettings.put(key, value);
     }
 
     @Override
-    public boolean getSlackNotificationsUpdatedEnabled(String key) {
+    public boolean getChatworkNotificationsUpdatedEnabled(String key) {
         return Boolean.parseBoolean((String)pluginSettings.get(key));
     }
 
     @Override
-    public void setSlackNotificationsUpdatedEnabled(String key, String value) {
+    public void setChatworkNotificationsUpdatedEnabled(String key, String value) {
         pluginSettings.put(key, value);
     }
 
     @Override
-    public boolean getSlackNotificationsApprovedEnabled(String key) {
+    public boolean getChatworkNotificationsApprovedEnabled(String key) {
         return Boolean.parseBoolean((String)pluginSettings.get(key));
     }
 
     @Override
-    public void setSlackNotificationsApprovedEnabled(String key, String value) {
+    public void setChatworkNotificationsApprovedEnabled(String key, String value) {
         pluginSettings.put(key, value);
     }
 
     @Override
-    public boolean getSlackNotificationsUnapprovedEnabled(String key) {
+    public boolean getChatworkNotificationsUnapprovedEnabled(String key) {
         return Boolean.parseBoolean((String)pluginSettings.get(key));
     }
 
     @Override
-    public void setSlackNotificationsUnapprovedEnabled(String key, String value) {
+    public void setChatworkNotificationsUnapprovedEnabled(String key, String value) {
         pluginSettings.put(key, value);
     }
 
     @Override
-    public boolean getSlackNotificationsDeclinedEnabled(String key) {
+    public boolean getChatworkNotificationsDeclinedEnabled(String key) {
         return Boolean.parseBoolean((String)pluginSettings.get(key));
     }
 
     @Override
-    public void setSlackNotificationsDeclinedEnabled(String key, String value) {
+    public void setChatworkNotificationsDeclinedEnabled(String key, String value) {
         pluginSettings.put(key, value);
     }
 
     @Override
-    public boolean getSlackNotificationsMergedEnabled(String key) {
+    public boolean getChatworkNotificationsMergedEnabled(String key) {
         return Boolean.parseBoolean((String)pluginSettings.get(key));
     }
 
     @Override
-    public void setSlackNotificationsMergedEnabled(String key, String value) {
+    public void setChatworkNotificationsMergedEnabled(String key, String value) {
         pluginSettings.put(key, value);
     }
 
     @Override
-    public boolean getSlackNotificationsCommentedEnabled(String key) {
+    public boolean getChatworkNotificationsCommentedEnabled(String key) {
         return Boolean.parseBoolean((String)pluginSettings.get(key));
     }
 
     @Override
-    public void setSlackNotificationsCommentedEnabled(String key, String value) {
+    public void setChatworkNotificationsCommentedEnabled(String key, String value) {
         pluginSettings.put(key, value);
     }
 
     @Override
-    public boolean getSlackNotificationsEnabledForPush(String key) {
+    public boolean getChatworkNotificationsEnabledForPush(String key) {
         return Boolean.parseBoolean((String)pluginSettings.get(key));
     }
 
     @Override
-    public void setSlackNotificationsEnabledForPush(String key, String value) {
+    public void setChatworkNotificationsEnabledForPush(String key, String value) {
         pluginSettings.put(key, value);
     }
 
     @Override
-    public boolean getSlackNotificationsEnabledForPersonal(String key) {
+    public boolean getChatworkNotificationsEnabledForPersonal(String key) {
         return Boolean.parseBoolean((String)pluginSettings.get(key));
     }
 
     @Override
-    public void setSlackNotificationsEnabledForPersonal(String key, String value) {
+    public void setChatworkNotificationsEnabledForPersonal(String key, String value) {
         pluginSettings.put(key, value);
     }
 

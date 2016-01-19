@@ -3,7 +3,7 @@ package com.pragbits.stash;
 public class PluginMetadata {
 
     public static String getPluginKey() {
-        return "com.pragbits.stash.stash2slack";
+        return "com.pragbits.stash.stash2chatwork";
     }
 
     public static String getCompleteModuleKey(String moduleKey) {
