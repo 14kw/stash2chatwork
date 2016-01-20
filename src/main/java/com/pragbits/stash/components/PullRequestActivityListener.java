@@ -73,6 +73,7 @@ public class PullRequestActivityListener {
 
             String repoName = repository.getSlug();
             String projectName = repository.getProject().getKey();
+            String repoPath = projectName + "/" + repoName;
             long pullRequestId = event.getPullRequest().getId();
             String userName = event.getUser() != null ? event.getUser().getDisplayName() : "unknown user";
             String activity = event.getActivity().getAction().name();
@@ -131,7 +132,8 @@ public class PullRequestActivityListener {
             ChatworkAttachment attachment = new ChatworkAttachment();
             attachment.setAuthorName(userName);
             attachment.setAuthorIcon(avatar);
-            attachment.setTitle(String.format("#%d: %s",
+            attachment.setTitle(String.format("[%s] #%d: %s",
+                                                  repoPath,
                                                   event.getPullRequest().getId(),
                                                   event.getPullRequest().getTitle()));
             attachment.setTitle_link(url);
@@ -143,9 +145,8 @@ public class PullRequestActivityListener {
 
             switch (event.getActivity().getAction()) {
                 case OPENED:
-                    attachment.setText(String.format("opened pull request #%d by @%s",
-                                                            event.getPullRequest().getId(),
-                                                            event.getPullRequest().getTitle()));
+                    attachment.setText(String.format("opened pull request #%d",
+                                                            event.getPullRequest().getId()));
 
 
                     if (resolvedLevel == NotificationLevel.COMPACT) {
@@ -158,9 +159,8 @@ public class PullRequestActivityListener {
                     break;
 
                 case REOPENED:
-                    attachment.setText(String.format("reopened pull request #%d by @%s",
-                                                            event.getPullRequest().getId(),
-                                                            userName));
+                    attachment.setText(String.format("reopened pull request #%d",
+                                                            event.getPullRequest().getId()));
 
                     if (resolvedLevel == NotificationLevel.COMPACT) {
                         this.addField(attachment, "Description", event.getPullRequest().getDescription());
@@ -171,9 +171,8 @@ public class PullRequestActivityListener {
                     break;
 
                 case UPDATED:
-                    attachment.setText(String.format("updated pull request #%d by @%s",
-                                                            event.getPullRequest().getId(),
-                                                            userName));
+                    attachment.setText(String.format("updated pull request #%d",
+                                                            event.getPullRequest().getId()));
 
                     if (resolvedLevel == NotificationLevel.COMPACT) {
                         this.addField(attachment, "Description", event.getPullRequest().getDescription());
@@ -184,45 +183,38 @@ public class PullRequestActivityListener {
                     break;
 
                 case APPROVED:
-                    attachment.setText(String.format("approved pull request #%d @%s",
-                                                            event.getPullRequest().getId(),
-                                                            userName));
+                    attachment.setText(String.format("approved pull request #%d",
+                                                            event.getPullRequest().getId()));
                     break;
 
                 case UNAPPROVED:
-                    attachment.setText(String.format("unapproved pull request #%d by @%s",
-                                                            event.getPullRequest().getId(),
-                                                            userName));
+                    attachment.setText(String.format("unapproved pull request #%d",
+                                                            event.getPullRequest().getId()));
                     break;
 
                 case DECLINED:
-                    attachment.setText(String.format("declined pull request #%d by @%s",
-                                                            event.getPullRequest().getId(),
-                                                            userName));
+                    attachment.setText(String.format("declined pull request #%d",
+                                                            event.getPullRequest().getId()));
                     break;
 
                 case MERGED:
-                    attachment.setText(String.format("merged pull request #%d by @%s",
-                                                            event.getPullRequest().getId(),
-                                                            userName));
+                    attachment.setText(String.format("merged pull request #%d",
+                                                            event.getPullRequest().getId()));
                     break;
 
                 case RESCOPED:
-                    attachment.setText(String.format("rescoped on pull request #%d by %s",
-                                                            event.getPullRequest().getId(),
-                                                            userName));
+                    attachment.setText(String.format("rescoped on pull request #%d",
+                                                            event.getPullRequest().getId()));
                     break;
 
                 case COMMENTED:
                     if (resolvedLevel == NotificationLevel.MINIMAL) {
-                        attachment.setText(String.format("commented on pull request #%d by @%s",
-                                event.getPullRequest().getId(),
-                                userName));
+                        attachment.setText(String.format("commented on pull request #%d",
+                                event.getPullRequest().getId()));
                     }
                     if (resolvedLevel == NotificationLevel.COMPACT || resolvedLevel == NotificationLevel.VERBOSE) {
-                        attachment.setText(String.format("commented on pull request #%d by @%s",
-                                event.getPullRequest().getId(),
-                                userName));
+                        attachment.setText(String.format("commented on pull request #%d",
+                                event.getPullRequest().getId()));
                         this.addField(attachment, "Comment", ((PullRequestCommentActivityEvent) event).getActivity().getComment().getText());
                     }
                     break;
