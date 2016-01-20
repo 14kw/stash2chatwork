@@ -98,11 +98,11 @@ public class RepositoryPushActivityListener {
                 if (isDeleted) {
                     // issue#4: if type is "DELETE" and toHash is all zero then this is a branch delete
                     if (ref.indexOf("refs/tags") >= 0) {
-                        text = String.format("Tag `%s` deleted from repository `%s`.",
+                        text = String.format("Tag [%s] deleted from repository `%s`.",
                                 ref.replace("refs/tags/", ""),
                                 repoPath);
                     } else {
-                        text = String.format("Branch `%s` deleted from repository `%s`.",
+                        text = String.format("Branch [%s] deleted from repository `%s`.",
                                 ref.replace("refs/heads/", ""),
                                 repoPath);
                     }
@@ -112,12 +112,12 @@ public class RepositoryPushActivityListener {
                     Changeset latestChangeSet = commitService.getChangeset(repository, refChange.getToHash());
                     myChanges.add(latestChangeSet);
                     if (ref.indexOf("refs/tags") >= 0) {
-                        text = String.format("Tag `%s` pushed on `%s`.",
+                        text = String.format("Tag [%s] pushed on `%s`.",
                                 ref.replace("refs/tags/", ""),
                                 repoPath
                                 );
                     } else {
-                        text = String.format("Branch `%s` pushed on `%s`.",
+                        text = String.format("Branch [%s] pushed on `%s`.",
                                 ref.replace("refs/heads/", ""),
                                 repoPath
                                 );
@@ -137,7 +137,7 @@ public class RepositoryPushActivityListener {
                     String commitStr = commitCount == 1 ? "commit" : "commits";
 
                     String branch = ref.replace("refs/heads/", "");
-                    text = String.format("Push on `%s` branch `%s` by `%s <%s>` (%d %s).",
+                    text = String.format("Push on [%s] branch [%s] \n by `%s %s` (%d %s).",
                             repoPath,
                             branch,
                             event.getUser() != null ? event.getUser().getDisplayName() : "unknown user",
@@ -152,7 +152,7 @@ public class RepositoryPushActivityListener {
                 ChatworkPayload payload = new ChatworkPayload();
 
                 payload.setText(text);
-                payload.setMrkdwn(true);
+                payload.setReqType("Push");
 
                 switch (resolvedChatworkSettings.getNotificationLevel()) {
                     case COMPACT:
