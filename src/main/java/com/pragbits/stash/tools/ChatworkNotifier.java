@@ -4,6 +4,7 @@ import org.apache.http.HttpStatus;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.conn.ssl.DefaultHostnameVerifier;
 import org.apache.http.entity.ContentType;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -16,7 +17,9 @@ import java.io.*;
 
 public class ChatworkNotifier {
 
-    private final CloseableHttpClient httpClient = HttpClients.createDefault();
+    private final CloseableHttpClient httpClient = HttpClients.custom()
+        .setSSLHostnameVerifier(new DefaultHostnameVerifier(null))
+        .build();
     private static final Logger log = LoggerFactory.getLogger(ChatworkNotifier.class);
 
     public  ChatworkNotifier() {

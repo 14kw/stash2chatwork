@@ -97,6 +97,7 @@
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpclient</artifactId>
+            <version>4.5.1</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -133,8 +134,8 @@
         </plugins>
     </build>
     <properties>
-        <stash.version>3.5.0</stash.version>
-        <stash.data.version>3.5.0</stash.data.version>
+        <stash.version>3.11.2</stash.version>
+        <stash.data.version>3.11.2</stash.data.version>
         <amps.version>5.0.13</amps.version>
     </properties>
 </project>
