@@ -37,22 +37,22 @@ public class DefaultChatworkSettingsService implements ChatworkSettingsService {
             "",     // channel name override
             "");    // webhook override
 
-    static final String KEY_SLACK_OVERRIDE_NOTIFICATION = "chatworkNotificationsOverrideEnabled";
-    static final String KEY_SLACK_NOTIFICATION = "chatworkNotificationsEnabled";
-    static final String KEY_SLACK_OPENED_NOTIFICATION = "chatworkNotificationsOpenedEnabled";
-    static final String KEY_SLACK_REOPENED_NOTIFICATION = "chatworkNotificationsReopenedEnabled";
-    static final String KEY_SLACK_UPDATED_NOTIFICATION = "chatworkNotificationsUpdatedEnabled";
-    static final String KEY_SLACK_APPROVED_NOTIFICATION = "chatworkNotificationsApprovedEnabled";
-    static final String KEY_SLACK_UNAPPROVED_NOTIFICATION = "chatworkNotificationsUnapprovedEnabled";
-    static final String KEY_SLACK_DECLINED_NOTIFICATION = "chatworkNotificationsDeclinedEnabled";
-    static final String KEY_SLACK_MERGED_NOTIFICATION = "chatworkNotificationsMergedEnabled";
-    static final String KEY_SLACK_COMMENTED_NOTIFICATION = "chatworkNotificationsCommentedEnabled";
-    static final String KEY_SLACK_NOTIFICATION_PUSH = "chatworkNotificationsEnabledForPush";
-    static final String KEY_SLACK_NOTIFICATION_PERSONAL = "chatworkNotificationsEnabledForPersonal";
-    static final String KEY_SLACK_NOTIFICATION_LEVEL = "chatworkNotificationLevel";
-    static final String KEY_SLACK_NOTIFICATION_PR_LEVEL = "chatworkNotificationPrLevel";
-    static final String KEY_SLACK_CHANNEL_NAME = "chatworkChannelName";
-    static final String KEY_SLACK_WEBHOOK_URL = "chatworkWebHookUrl";
+    static final String KEY_CHATWORK_OVERRIDE_NOTIFICATION = "chatworkNotificationsOverrideEnabled";
+    static final String KEY_CHATWORK_NOTIFICATION = "chatworkNotificationsEnabled";
+    static final String KEY_CHATWORK_OPENED_NOTIFICATION = "chatworkNotificationsOpenedEnabled";
+    static final String KEY_CHATWORK_REOPENED_NOTIFICATION = "chatworkNotificationsReopenedEnabled";
+    static final String KEY_CHATWORK_UPDATED_NOTIFICATION = "chatworkNotificationsUpdatedEnabled";
+    static final String KEY_CHATWORK_APPROVED_NOTIFICATION = "chatworkNotificationsApprovedEnabled";
+    static final String KEY_CHATWORK_UNAPPROVED_NOTIFICATION = "chatworkNotificationsUnapprovedEnabled";
+    static final String KEY_CHATWORK_DECLINED_NOTIFICATION = "chatworkNotificationsDeclinedEnabled";
+    static final String KEY_CHATWORK_MERGED_NOTIFICATION = "chatworkNotificationsMergedEnabled";
+    static final String KEY_CHATWORK_COMMENTED_NOTIFICATION = "chatworkNotificationsCommentedEnabled";
+    static final String KEY_CHATWORK_NOTIFICATION_PUSH = "chatworkNotificationsEnabledForPush";
+    static final String KEY_CHATWORK_NOTIFICATION_PERSONAL = "chatworkNotificationsEnabledForPersonal";
+    static final String KEY_CHATWORK_NOTIFICATION_LEVEL = "chatworkNotificationLevel";
+    static final String KEY_CHATWORK_NOTIFICATION_PR_LEVEL = "chatworkNotificationPrLevel";
+    static final String KEY_CHATWORK_CHANNEL_NAME = "chatworkChannelName";
+    static final String KEY_CHATWORK_WEBHOOK_URL = "chatworkWebHookUrl";
 
     private final PluginSettings pluginSettings;
     private final PermissionValidationService validationService;
@@ -101,22 +101,22 @@ public class DefaultChatworkSettingsService implements ChatworkSettingsService {
     // probably I don't know someyhing here. Applying a hack
     private Map<String, String> serialize(ChatworkSettings settings) {
         ImmutableMap<String, String> immutableMap = ImmutableMap.<String, String>builder()
-                .put(KEY_SLACK_OVERRIDE_NOTIFICATION, Boolean.toString(settings.isChatworkNotificationsOverrideEnabled()))
-                .put(KEY_SLACK_NOTIFICATION, Boolean.toString(settings.isChatworkNotificationsEnabled()))
-                .put(KEY_SLACK_OPENED_NOTIFICATION, Boolean.toString(settings.isChatworkNotificationsOpenedEnabled()))
-                .put(KEY_SLACK_REOPENED_NOTIFICATION, Boolean.toString(settings.isChatworkNotificationsReopenedEnabled()))
-                .put(KEY_SLACK_UPDATED_NOTIFICATION, Boolean.toString(settings.isChatworkNotificationsUpdatedEnabled()))
-                .put(KEY_SLACK_APPROVED_NOTIFICATION, Boolean.toString(settings.isChatworkNotificationsApprovedEnabled()))
-                .put(KEY_SLACK_UNAPPROVED_NOTIFICATION, Boolean.toString(settings.isChatworkNotificationsUnapprovedEnabled()))
-                .put(KEY_SLACK_DECLINED_NOTIFICATION, Boolean.toString(settings.isChatworkNotificationsDeclinedEnabled()))
-                .put(KEY_SLACK_MERGED_NOTIFICATION, Boolean.toString(settings.isChatworkNotificationsMergedEnabled()))
-                .put(KEY_SLACK_COMMENTED_NOTIFICATION, Boolean.toString(settings.isChatworkNotificationsCommentedEnabled()))
-                .put(KEY_SLACK_NOTIFICATION_PUSH, Boolean.toString(settings.isChatworkNotificationsEnabledForPush()))
-                .put(KEY_SLACK_NOTIFICATION_PERSONAL, Boolean.toString(settings.isChatworkNotificationsEnabledForPersonal()))
-                .put(KEY_SLACK_NOTIFICATION_LEVEL, settings.getNotificationLevel().toString())
-                .put(KEY_SLACK_NOTIFICATION_PR_LEVEL, settings.getNotificationPrLevel().toString())
-                .put(KEY_SLACK_CHANNEL_NAME, settings.getChatworkChannelName().isEmpty() ? " " : settings.getChatworkChannelName())
-                .put(KEY_SLACK_WEBHOOK_URL, settings.getChatworkWebHookUrl().isEmpty() ? " " : settings.getChatworkWebHookUrl())
+                .put(KEY_CHATWORK_OVERRIDE_NOTIFICATION, Boolean.toString(settings.isChatworkNotificationsOverrideEnabled()))
+                .put(KEY_CHATWORK_NOTIFICATION, Boolean.toString(settings.isChatworkNotificationsEnabled()))
+                .put(KEY_CHATWORK_OPENED_NOTIFICATION, Boolean.toString(settings.isChatworkNotificationsOpenedEnabled()))
+                .put(KEY_CHATWORK_REOPENED_NOTIFICATION, Boolean.toString(settings.isChatworkNotificationsReopenedEnabled()))
+                .put(KEY_CHATWORK_UPDATED_NOTIFICATION, Boolean.toString(settings.isChatworkNotificationsUpdatedEnabled()))
+                .put(KEY_CHATWORK_APPROVED_NOTIFICATION, Boolean.toString(settings.isChatworkNotificationsApprovedEnabled()))
+                .put(KEY_CHATWORK_UNAPPROVED_NOTIFICATION, Boolean.toString(settings.isChatworkNotificationsUnapprovedEnabled()))
+                .put(KEY_CHATWORK_DECLINED_NOTIFICATION, Boolean.toString(settings.isChatworkNotificationsDeclinedEnabled()))
+                .put(KEY_CHATWORK_MERGED_NOTIFICATION, Boolean.toString(settings.isChatworkNotificationsMergedEnabled()))
+                .put(KEY_CHATWORK_COMMENTED_NOTIFICATION, Boolean.toString(settings.isChatworkNotificationsCommentedEnabled()))
+                .put(KEY_CHATWORK_NOTIFICATION_PUSH, Boolean.toString(settings.isChatworkNotificationsEnabledForPush()))
+                .put(KEY_CHATWORK_NOTIFICATION_PERSONAL, Boolean.toString(settings.isChatworkNotificationsEnabledForPersonal()))
+                .put(KEY_CHATWORK_NOTIFICATION_LEVEL, settings.getNotificationLevel().toString())
+                .put(KEY_CHATWORK_NOTIFICATION_PR_LEVEL, settings.getNotificationPrLevel().toString())
+                .put(KEY_CHATWORK_CHANNEL_NAME, settings.getChatworkChannelName().isEmpty() ? " " : settings.getChatworkChannelName())
+                .put(KEY_CHATWORK_WEBHOOK_URL, settings.getChatworkWebHookUrl().isEmpty() ? " " : settings.getChatworkWebHookUrl())
                 .build();
 
         return  immutableMap;
@@ -126,22 +126,22 @@ public class DefaultChatworkSettingsService implements ChatworkSettingsService {
     // probably I don't know something here. Applying a hack
     private ChatworkSettings deserialize(Map<String, String> settings) {
         return new ImmutableChatworkSettings(
-                Boolean.parseBoolean(settings.get(KEY_SLACK_OVERRIDE_NOTIFICATION)),
-                Boolean.parseBoolean(settings.get(KEY_SLACK_NOTIFICATION)),
-                Boolean.parseBoolean(settings.get(KEY_SLACK_OPENED_NOTIFICATION)),
-                Boolean.parseBoolean(settings.get(KEY_SLACK_REOPENED_NOTIFICATION)),
-                Boolean.parseBoolean(settings.get(KEY_SLACK_UPDATED_NOTIFICATION)),
-                Boolean.parseBoolean(settings.get(KEY_SLACK_APPROVED_NOTIFICATION)),
-                Boolean.parseBoolean(settings.get(KEY_SLACK_UNAPPROVED_NOTIFICATION)),
-                Boolean.parseBoolean(settings.get(KEY_SLACK_DECLINED_NOTIFICATION)),
-                Boolean.parseBoolean(settings.get(KEY_SLACK_MERGED_NOTIFICATION)),
-                Boolean.parseBoolean(settings.get(KEY_SLACK_COMMENTED_NOTIFICATION)),
-                Boolean.parseBoolean(settings.get(KEY_SLACK_NOTIFICATION_PUSH)),
-                Boolean.parseBoolean(settings.get(KEY_SLACK_NOTIFICATION_PERSONAL)),
-                settings.containsKey(KEY_SLACK_NOTIFICATION_LEVEL) ? NotificationLevel.valueOf(settings.get(KEY_SLACK_NOTIFICATION_LEVEL)) : NotificationLevel.VERBOSE,
-                settings.containsKey(KEY_SLACK_NOTIFICATION_PR_LEVEL) ? NotificationLevel.valueOf(settings.get(KEY_SLACK_NOTIFICATION_PR_LEVEL)) : NotificationLevel.VERBOSE,
-                settings.get(KEY_SLACK_CHANNEL_NAME).toString().equals(" ") ? "" : settings.get(KEY_SLACK_CHANNEL_NAME).toString(),
-                settings.get(KEY_SLACK_WEBHOOK_URL).toString().equals(" ") ? "" : settings.get(KEY_SLACK_WEBHOOK_URL).toString()
+                Boolean.parseBoolean(settings.get(KEY_CHATWORK_OVERRIDE_NOTIFICATION)),
+                Boolean.parseBoolean(settings.get(KEY_CHATWORK_NOTIFICATION)),
+                Boolean.parseBoolean(settings.get(KEY_CHATWORK_OPENED_NOTIFICATION)),
+                Boolean.parseBoolean(settings.get(KEY_CHATWORK_REOPENED_NOTIFICATION)),
+                Boolean.parseBoolean(settings.get(KEY_CHATWORK_UPDATED_NOTIFICATION)),
+                Boolean.parseBoolean(settings.get(KEY_CHATWORK_APPROVED_NOTIFICATION)),
+                Boolean.parseBoolean(settings.get(KEY_CHATWORK_UNAPPROVED_NOTIFICATION)),
+                Boolean.parseBoolean(settings.get(KEY_CHATWORK_DECLINED_NOTIFICATION)),
+                Boolean.parseBoolean(settings.get(KEY_CHATWORK_MERGED_NOTIFICATION)),
+                Boolean.parseBoolean(settings.get(KEY_CHATWORK_COMMENTED_NOTIFICATION)),
+                Boolean.parseBoolean(settings.get(KEY_CHATWORK_NOTIFICATION_PUSH)),
+                Boolean.parseBoolean(settings.get(KEY_CHATWORK_NOTIFICATION_PERSONAL)),
+                settings.containsKey(KEY_CHATWORK_NOTIFICATION_LEVEL) ? NotificationLevel.valueOf(settings.get(KEY_CHATWORK_NOTIFICATION_LEVEL)) : NotificationLevel.VERBOSE,
+                settings.containsKey(KEY_CHATWORK_NOTIFICATION_PR_LEVEL) ? NotificationLevel.valueOf(settings.get(KEY_CHATWORK_NOTIFICATION_PR_LEVEL)) : NotificationLevel.VERBOSE,
+                settings.get(KEY_CHATWORK_CHANNEL_NAME).toString().equals(" ") ? "" : settings.get(KEY_CHATWORK_CHANNEL_NAME).toString(),
+                settings.get(KEY_CHATWORK_WEBHOOK_URL).toString().equals(" ") ? "" : settings.get(KEY_CHATWORK_WEBHOOK_URL).toString()
         );
     }
 
