@@ -28,7 +28,6 @@ import java.util.List;
 
 public class RepositoryPushActivityListener {
     static final String KEY_GLOBAL_SETTING_HOOK_URL = "stash2chatwork.globalsettings.hookurl";
-    static final String KEY_GLOBAL_CHATWORK_CHANNEL_NAME = "stash2chatwork.globalsettings.channelname";
     private static final Logger log = LoggerFactory.getLogger(RepositoryPushActivityListener.class);
 
     private final ChatworkGlobalSettingsService chatworkGlobalSettingsService;
@@ -63,7 +62,6 @@ public class RepositoryPushActivityListener {
         if (resolvedChatworkSettings.isChatworkNotificationsEnabledForPush()) {
             String localHookUrl = chatworkSettings.getChatworkWebHookUrl();
             WebHookSelector hookSelector = new WebHookSelector(globalHookUrl, localHookUrl);
-            ChannelSelector channelSelector = new ChannelSelector(chatworkGlobalSettingsService.getChannelName(KEY_GLOBAL_CHATWORK_CHANNEL_NAME), chatworkSettings.getChatworkChannelName());
 
             if (!hookSelector.isHookValid()) {
                 log.error("There is no valid configured Web hook url! Reason: " + hookSelector.getProblem());
@@ -170,15 +168,8 @@ public class RepositoryPushActivityListener {
                 // - empty
                 // - comma separated list of channel names, eg: #mych1, #mych2, #mych3
 
-                if (channelSelector.getSelectedChannel().isEmpty()) {
+                if (channelSelector.getSelectedChannel().isNotEmpty()) {
                     chatworkNotifier.SendChatworkNotification(hookSelector.getSelectedHook(), gson.toJson(payload));
-                } else {
-                    // send message to multiple channels
-                    List<String> channels = Arrays.asList(channelSelector.getSelectedChannel().split("\\s*,\\s*"));
-                    for (String channel: channels) {
-                        payload.setChannel(channel.trim());
-                        chatworkNotifier.SendChatworkNotification(hookSelector.getSelectedHook(), gson.toJson(payload));
-                    }
                 }
             }
         }
