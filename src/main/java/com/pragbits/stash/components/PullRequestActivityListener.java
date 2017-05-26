@@ -243,7 +243,7 @@ public class PullRequestActivityListener {
             // chatworkSettings.getChatworkChannelName might be:
             // - empty
 
-            if (hookSelector.getSelectedHook().isNotEmpty()) {
+            if (!hookSelector.getSelectedHook().isEmpty()) {
                 chatworkNotifier.SendChatworkNotification(hookSelector.getSelectedHook(), gson.toJson(payload));
             }
         }

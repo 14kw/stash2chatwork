@@ -168,7 +168,7 @@ public class RepositoryPushActivityListener {
                 // - empty
                 // - comma separated list of channel names, eg: #mych1, #mych2, #mych3
 
-                if (channelSelector.getSelectedChannel().isNotEmpty()) {
+                if (!hookSelector.getSelectedHook().isEmpty()) {
                     chatworkNotifier.SendChatworkNotification(hookSelector.getSelectedHook(), gson.toJson(payload));
                 }
             }
